@@ -25,6 +25,7 @@ plugins {
     id "io.codearte.nexus-staging" version "0.30.0"
     id "me.champeau.jmh" version "0.7.1"
     id 'com.github.johnrengelman.shadow' version "7.1.2"
+    id 'org.checkerframework' version '0.6.35' apply false
 }
 
 ext {
@@ -45,6 +46,17 @@ subprojects {
     java {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
+    }
+
+    apply plugin: 'org.checkerframework'
+
+    checkerFramework {
+        checkers = [
+                'org.checkerframework.checker.optional.OptionalChecker',
+        ]
+        extraJavacArgs = [
+          '-AsuppressWarnings=type.anno.before.modifier,type.anno.before.decl.anno'
+        ]
     }
 
     repositories {
