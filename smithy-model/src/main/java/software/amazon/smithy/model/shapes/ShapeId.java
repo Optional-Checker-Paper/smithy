@@ -22,6 +22,8 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
+
+import org.checkerframework.checker.optional.qual.EnsuresPresentIf;
 import software.amazon.smithy.model.loader.ParserUtils;
 import software.amazon.smithy.model.loader.Prelude;
 import software.amazon.smithy.model.node.Node;
@@ -348,6 +350,8 @@ public final class ShapeId implements ToShapeId, Comparable<ShapeId> {
      *
      * @return Returns true if the ID has a member.
      */
+    @EnsuresPresentIf(result = true, expression = "this.getMember()")
+    @SuppressWarnings("optional:contracts.conditional.postcondition") // application-invariant : effectively an isPresent() check
     public boolean hasMember() {
         return member != null;
     }

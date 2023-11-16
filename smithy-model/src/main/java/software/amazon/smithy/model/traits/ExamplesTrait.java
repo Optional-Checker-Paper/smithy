@@ -19,6 +19,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+
+import org.checkerframework.dataflow.qual.Pure;
 import software.amazon.smithy.model.node.ArrayNode;
 import software.amazon.smithy.model.node.BooleanNode;
 import software.amazon.smithy.model.node.Node;
@@ -154,7 +156,7 @@ public final class ExamplesTrait extends AbstractTrait implements ToSmithyBuilde
         /**
          * @return Gets the output object.
          */
-        public Optional<ObjectNode> getOutput() {
+        public @Pure Optional<ObjectNode> getOutput() {
             return Optional.ofNullable(output);
         }
 

@@ -25,6 +25,8 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 import java.util.TreeSet;
+
+import org.checkerframework.checker.optional.qual.EnsuresPresentIf;
 import software.amazon.smithy.model.FromSourceLocation;
 import software.amazon.smithy.model.Model;
 import software.amazon.smithy.model.SourceException;
@@ -646,6 +648,8 @@ public abstract class Shape implements FromSourceLocation, Tagged, ToShapeId, Co
     /**
      * @return Returns true if the shape is a {@link MapShape} shape.
      */
+    @EnsuresPresentIf(result = true, expression = "this.asMapShape()")
+    @SuppressWarnings("optional:contracts.conditional.postcondition") // application-invariant : effectively an isPresent() check
     public final boolean isMapShape() {
         return getType() == ShapeType.MAP;
     }
@@ -653,6 +657,8 @@ public abstract class Shape implements FromSourceLocation, Tagged, ToShapeId, Co
     /**
      * @return Returns true if the shape is a {@link MemberShape} shape.
      */
+    @EnsuresPresentIf(result = true, expression = "this.asMemberShape()")
+    @SuppressWarnings("optional:contracts.conditional.postcondition") // application-invariant : effectively an isPresent() check
     public final boolean isMemberShape() {
         return getType() == ShapeType.MEMBER;
     }
@@ -660,6 +666,8 @@ public abstract class Shape implements FromSourceLocation, Tagged, ToShapeId, Co
     /**
      * @return Returns true if the shape is an {@link OperationShape} shape.
      */
+    @EnsuresPresentIf(result = true, expression = "this.asOperationShape()")
+    @SuppressWarnings("optional:contracts.conditional.postcondition") // application-invariant : effectively an isPresent() check
     public final boolean isOperationShape() {
         return getType() == ShapeType.OPERATION;
     }
@@ -667,6 +675,8 @@ public abstract class Shape implements FromSourceLocation, Tagged, ToShapeId, Co
     /**
      * @return Returns true if the shape is a {@link ResourceShape} shape.
      */
+    @EnsuresPresentIf(result = true, expression = "this.asResourceShape()")
+    @SuppressWarnings("optional:contracts.conditional.postcondition") // application-invariant : effectively an isPresent() check
     public final boolean isResourceShape() {
         return getType() == ShapeType.RESOURCE;
     }
@@ -674,6 +684,8 @@ public abstract class Shape implements FromSourceLocation, Tagged, ToShapeId, Co
     /**
      * @return Returns true if the shape is a {@link ServiceShape} shape.
      */
+    @EnsuresPresentIf(result = true, expression = "this.asServiceShape()")
+    @SuppressWarnings("optional:contracts.conditional.postcondition") // application-invariant : effectively an isPresent() check
     public final boolean isServiceShape() {
         return getType() == ShapeType.SERVICE;
     }

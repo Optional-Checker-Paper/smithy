@@ -17,6 +17,8 @@ package software.amazon.smithy.model.knowledge;
 
 import java.lang.ref.WeakReference;
 import java.util.Objects;
+
+import org.checkerframework.checker.optional.qual.EnsuresPresentIf;
 import software.amazon.smithy.model.Model;
 import software.amazon.smithy.model.node.BooleanNode;
 import software.amazon.smithy.model.node.Node;
@@ -171,6 +173,7 @@ public class NullableIndex implements KnowledgeIndex {
      * @param checkMode The mode used when checking if the member is considered nullable.
      * @return Returns true if the member is optional.
      */
+    @SuppressWarnings("optional:method.invocation") // application-invariant : case match on Structure type ensures presence of asStructureShape()
     public boolean isMemberNullable(MemberShape member, CheckMode checkMode) {
         Model m = Objects.requireNonNull(model.get());
         Shape container = m.expectShape(member.getContainer());
@@ -214,6 +217,7 @@ public class NullableIndex implements KnowledgeIndex {
      * @return Returns true if the shape is nullable.
      */
     @Deprecated
+    @SuppressWarnings("optional:method.invocation") // application-invariant : case match on Structure type ensures presence of asStructureShape()
     public final boolean isNullable(ToShapeId shapeId) {
         Model m = Objects.requireNonNull(model.get());
         Shape shape = m.getShape(shapeId.toShapeId()).orElse(null);

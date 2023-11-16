@@ -116,6 +116,7 @@ public final class StreamingTraitValidator extends AbstractValidator {
                 .contains(HttpPayloadTrait.ID);
     }
 
+    @SuppressWarnings("optional:method.invocation") // application-invariant : relationships exist on MemberShape targets (See RelationshipType.java#L140)
     private void validateStreamingTargets(Model model, List<ValidationEvent> events) {
         NeighborProvider provider = NeighborProviderIndex.of(model).getReverseProvider();
         // Find members that target streaming shapes and validate things that target their containers.

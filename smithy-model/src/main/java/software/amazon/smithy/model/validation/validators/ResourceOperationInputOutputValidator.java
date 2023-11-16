@@ -82,6 +82,7 @@ public final class ResourceOperationInputOutputValidator extends AbstractValidat
         return events;
     }
 
+    @SuppressWarnings("optional:optional.parameter") // optional-parameter : use of optional as a parameter
     private void processLifecycleOperationProperties(
         Model model,
         ResourceShape resource,

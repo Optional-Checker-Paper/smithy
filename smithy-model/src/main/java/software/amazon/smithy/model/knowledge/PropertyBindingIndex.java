@@ -23,6 +23,8 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
+
+import org.checkerframework.checker.optional.qual.EnsuresPresentIf;
 import software.amazon.smithy.model.Model;
 import software.amazon.smithy.model.shapes.MemberShape;
 import software.amazon.smithy.model.shapes.OperationShape;
@@ -133,6 +135,9 @@ public final class PropertyBindingIndex implements KnowledgeIndex {
      * @param memberShape the member shape to check
      * @return true if member shape maps to a property on the given resource
      */
+    // TODO: this might not work for if there's a method called after this but BEFORE .getId();
+    @EnsuresPresentIf(result = true, expression = "this.getPropertyName(#1.getId())")
+    @SuppressWarnings("optional:contracts.conditional.postcondition") // application-invariant : check in map for present
     public boolean isMemberShapeProperty(MemberShape memberShape) {
         return memberShapeToPropertyName.containsKey(memberShape.toShapeId());
     }

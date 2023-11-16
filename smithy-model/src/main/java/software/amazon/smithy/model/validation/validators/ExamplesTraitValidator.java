@@ -18,6 +18,8 @@ package software.amazon.smithy.model.validation.validators;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+
+import org.checkerframework.dataflow.qual.Pure;
 import software.amazon.smithy.model.Model;
 import software.amazon.smithy.model.node.ObjectNode;
 import software.amazon.smithy.model.shapes.OperationShape;
@@ -90,6 +92,7 @@ public final class ExamplesTraitValidator extends AbstractValidator {
         return events;
     }
 
+    @Pure
     private NodeValidationVisitor createVisitor(
             String name,
             ObjectNode value,

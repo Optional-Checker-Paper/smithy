@@ -75,6 +75,7 @@ public final class OperationValidator extends AbstractValidator {
         return events;
     }
 
+    @SuppressWarnings("optional:method.invocation") // application-invariant : relationships exist on MemberShape targets (See RelationshipType.java#L140)
     private void validateInputOutput(
             Set<Shape> shapes,
             NeighborProvider reverseProvider,

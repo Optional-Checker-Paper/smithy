@@ -87,6 +87,7 @@ public final class TraitTargetValidator extends AbstractValidator {
         }
     }
 
+    @SuppressWarnings("optional:method.invocation") // application-invariant : prior check
     private void validateTraitTargets(
             Model model,
             List<ValidationEvent> events,
