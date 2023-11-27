@@ -168,6 +168,7 @@ public final class ObjectNode extends Node implements ToSmithyBuilder<ObjectNode
      * @param value Value that may be present.
      * @return Returns an object with the optionally added member.
      */
+    @SuppressWarnings("optional:optional.parameter") // optional-parameter : use of optional as a parameter
     public <T extends ToNode> ObjectNode withOptionalMember(String key, Optional<T> value) {
         return value.map(val -> withMember(key, val)).orElse(this);
     }
@@ -826,6 +827,7 @@ public final class ObjectNode extends Node implements ToSmithyBuilder<ObjectNode
             return withMember(from(key), from(value));
         }
 
+        @SuppressWarnings("optional:optional.parameter") // optional-parameter : use of optional as a parameter
         public <T extends ToNode> Builder withOptionalMember(String key, Optional<T> value) {
             return value.map(val -> withMember(key, val.toNode())).orElse(this);
         }

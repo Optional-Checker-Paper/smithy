@@ -38,7 +38,10 @@ public final class OptionalUtils {
      * @param <T> Type of value.
      * @return A value of type T.
      */
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({
+            "unchecked",
+            "optional:optional.parameter" // optional-parameter : use of optional as a parameter
+    })
     public static <T> Optional<T> or(Optional<T> value, Supplier<Optional<? extends T>> supplier) {
         return value.isPresent() ? value : (Optional<T>) supplier.get();
     }
@@ -52,6 +55,7 @@ public final class OptionalUtils {
      * @param <T> Value type.
      * @return A stream that contains a present value or a stream that is empty.
      */
+    @SuppressWarnings("optional:optional.parameter") // optional-parameter : use of optional as a parameter
     public static <T> Stream<T> stream(Optional<T> value) {
         return value.map(Stream::of).orElseGet(Stream::empty);
     }
@@ -65,6 +69,7 @@ public final class OptionalUtils {
      * @param emptyAction Runnable to invoke if a value is not present.
      * @param <T> Type of value.
      */
+    @SuppressWarnings("optional:optional.parameter") // optional-parameter : use of optional as a parameter
     public static <T> void ifPresentOrElse(Optional<T> value, Consumer<T> action, Runnable emptyAction) {
         if (value.isPresent()) {
             action.accept(value.get());

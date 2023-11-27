@@ -153,6 +153,7 @@ public final class PathFinder {
      * @param memberName Input member name to find in the operation input.
      * @return Returns the optionally found {@code Path} to the member.
      */
+    @SuppressWarnings("optional:optional.collection") // optional-collection : use of optional to wrap a collection
     public Optional<Path> createPathToInputMember(ToShapeId operationId, String memberName) {
         return createPathTo(operationId, memberName, RelationshipType.INPUT);
     }
@@ -164,10 +165,12 @@ public final class PathFinder {
      * @param memberName Output member name to find in the operation output.
      * @return Returns the optionally found {@code Path} to the member.
      */
+    @SuppressWarnings("optional:optional.collection") // optional-collection : use of optional to wrap a collection
     public Optional<Path> createPathToOutputMember(ToShapeId operationId, String memberName) {
         return createPathTo(operationId, memberName, RelationshipType.OUTPUT);
     }
 
+    @SuppressWarnings("optional:optional.collection") // optional-collection : use of optional to wrap a collection
     private Optional<Path> createPathTo(ToShapeId operationId, String memberName, RelationshipType rel) {
         OperationShape operation = model.getShape(operationId.toShapeId())
                 .flatMap(Shape::asOperationShape)

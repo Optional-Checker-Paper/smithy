@@ -76,7 +76,10 @@ final class DefaultNodeSerializers {
         }
 
         @Override
-        @SuppressWarnings("unchecked")
+        @SuppressWarnings({
+                "unchecked",
+                "optional:optional.parameter" // optional-parameter : use of optional as a parameter
+        })
         public Node serialize(Optional value, Set<Object> serializedObjects, NodeMapper mapper) {
             return (Node) value.map(v -> mapper.serialize(v, serializedObjects)).orElse(Node.nullNode());
         }
